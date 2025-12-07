@@ -38,6 +38,26 @@
     }
 
     /* Fade in */
+       #logo-wrapper {
+        opacity: 0;
+        animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        to { opacity: 1; }
+    }
+
+    #manim-video {
+        display: none;
+        width: 80%;
+        max-width: 900px;
+        margin-top: 20px;
+        box-shadow: 0 0 40px #00ffd9;
+        border-radius: 12px;
+    }
+</style>
+</head>
+
     #logo-wrapper {
         opacity: 0;
         animation: fadeIn 2s ease forwards;
@@ -89,223 +109,92 @@
 <!-- I shortened here just for chat display, but in your file paste
      THE COMPLETE SVG EXACTLY AS YOU SENT ABOVE -->
 </svg>
-<!-- save as arak_alok_center.svg -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#02040a"></stop>
-      <stop offset="1" stop-color="#001322"></stop>
-    </linearGradient>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="420" height="420">
 
-    <radialGradient id="pulseGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ffd86b" stop-opacity="0.95"></stop>
-      <stop offset="70%" stop-color="#ff9a00" stop-opacity="0.25"></stop>
+  <defs>
+    <!-- background -->
+    <radialGradient id="bg" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#020812"></stop>
+      <stop offset="100%" stop-color="#000000"></stop>
+    </radialGradient>
+
+    <!-- center glow -->
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffd86b" stop-opacity="1"></stop>
+      <stop offset="60%" stop-color="#ff9a00" stop-opacity="0.6"></stop>
       <stop offset="100%" stop-color="#000000" stop-opacity="0"></stop>
     </radialGradient>
 
-    <filter id="softGlow">
-      <feGaussianBlur stdDeviation="6" result="b"></feGaussianBlur>
+    <!-- soft neon glow -->
+    <filter id="neonGlow">
+      <feGaussianBlur stdDeviation="10" result="b"></feGaussianBlur>
       <feMerge>
         <feMergeNode in="b"></feMergeNode>
         <feMergeNode in="SourceGraphic"></feMergeNode>
       </feMerge>
     </filter>
 
-    <symbol id="server">
-      <rect x="-28" y="-14" width="56" height="28" rx="6" ry="6" fill="#083047" stroke="#00c7ff" stroke-width="2"></rect>
-      <rect x="-22" y="-8" width="44" height="6" fill="#00161a"></rect>
-      <circle cx="-12" cy="6" r="2.5" fill="#00ffea"></circle>
-      <circle cx="-2" cy="6" r="2.5" fill="#00ffea"></circle>
-      <circle cx="8" cy="6" r="2.5" fill="#00ffea"></circle>
-    </symbol>
-
-    <!-- keyframe-like pulse animation (used via SMIL animateTransform/animate) -->
     <style>
-      .glow-line { stroke-linecap: round; stroke: url(#lineGrad); stroke-width: 2.5; filter: url(#softGlow); }
-      .node-fill { fill: #042a2a; stroke: #00d7ff; stroke-width: 1.5; filter: url(#softGlow); }
-      .label { font-family: "Segoe UI", Roboto, Arial, sans-serif; font-size: 12px; fill:#bfffdc; }
+      .ring {
+        fill: none;
+        stroke: #00ffd9;
+        stroke-width: 3;
+        filter: url(#neonGlow);
+      }
+      .title {
+        font-family: Orbitron, Arial;
+        font-size: 28px;
+        fill: #ffd86b;
+        letter-spacing: 3px;
+      }
     </style>
-
-    <linearGradient id="lineGrad">
-      <stop offset="0%" stop-color="#00ffdd"></stop>
-      <stop offset="60%" stop-color="#ffd86b"></stop>
-      <stop offset="100%" stop-color="#ffb347"></stop>
-    </linearGradient>
-
   </defs>
 
   <!-- background -->
   <rect width="100%" height="100%" fill="url(#bg)"></rect>
 
-  <!-- outer aura -->
+  <!-- OUTER ROTATING RING -->
   <g transform="translate(300 300)">
-    <circle r="240" fill="url(#pulseGrad)">
-      <animate attributeName="r" values="232;240;232" dur="4s" repeatCount="indefinite"></animate>
-      <animate attributeName="opacity" values="0.9;0.6;0.9" dur="4s" repeatCount="indefinite"></animate>
+    <circle r="200" class="ring" opacity="0.35">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="30s" repeatCount="indefinite"></animateTransform>
     </circle>
   </g>
 
-  <!-- servers / AI nodes around (top, left-top, right-top, left-bottom, right-bottom) -->
-  <g id="network-nodes" transform="translate(0,0)">
-    <!-- positions defined as groups for easy animation -->
-    <g transform="translate(300,60)" id="node-top">
-      <use href="#server"></use>
-      <text x="0" y="40" class="label" text-anchor="middle">Node — AI Beacon</text>
-    </g>
-
-    <g transform="translate(110,160)" id="node-left-top">
-      <use href="#server"></use>
-      <text x="0" y="40" class="label" text-anchor="middle">Regional Server</text>
-    </g>
-
-    <g transform="translate(490,160)" id="node-right-top">
-      <use href="#server"></use>
-      <text x="0" y="40" class="label" text-anchor="middle">Cloud Cluster</text>
-    </g>
-
-    <g transform="translate(120,420)" id="node-left-bottom">
-      <use href="#server"></use>
-      <text x="0" y="40" class="label" text-anchor="middle">Edge API</text>
-    </g>
-
-    <g transform="translate(490,420)" id="node-right-bottom">
-      <use href="#server"></use>
-      <text x="0" y="40" class="label" text-anchor="middle">Global Mesh</text>
-    </g>
-  </g>
-
-  <!-- connection lines from Alok center to nodes -->
-  <g id="connections" stroke-width="3" fill="none">
-    <!-- top -->
-    <path id="line-top" class="glow-line" d="M300,210 L300,110 L300,80" stroke-linejoin="round">
-      <animate attributeName="stroke-opacity" values="0.6;1;0.6" dur="2.6s" repeatCount="indefinite"></animate>
-      <animate attributeName="stroke-dasharray" values="0 180;20 160;0 180" dur="3s" repeatCount="indefinite"></animate>
-    </path>
-
-    <!-- left-top -->
-    <path id="line-left-top" class="glow-line" d="M300,240 L180,180 L140,160">
-      <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="3.1s" repeatCount="indefinite"></animate>
-      <animate attributeName="stroke-dasharray" values="0 230;18 210;0 230" dur="3.6s" repeatCount="indefinite"></animate>
-    </path>
-
-    <!-- right-top -->
-    <path id="line-right-top" class="glow-line" d="M300,240 L420,180 L460,160">
-      <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="3.1s" repeatCount="indefinite"></animate>
-      <animate attributeName="stroke-dasharray" values="0 230;18 210;0 230" dur="3.8s" repeatCount="indefinite"></animate>
-    </path>
-
-    <!-- left-bottom -->
-    <path id="line-left-bottom" class="glow-line" d="M300,360 L170,420 L140,440">
-      <animate attributeName="stroke-opacity" values="0.4;1;0.4" dur="3.6s" repeatCount="indefinite"></animate>
-      <animate attributeName="stroke-dasharray" values="0 240;20 220;0 240" dur="4s" repeatCount="indefinite"></animate>
-    </path>
-
-    <!-- right-bottom -->
-    <path id="line-right-bottom" class="glow-line" d="M300,360 L430,420 L460,440">
-      <animate attributeName="stroke-opacity" values="0.4;1;0.4" dur="3.6s" repeatCount="indefinite"></animate>
-      <animate attributeName="stroke-dasharray" values="0 240;20 220;0 240" dur="4.2s" repeatCount="indefinite"></animate>
-    </path>
-  </g>
-
-  <!-- central figure - stylized Alok Ranjan -->
-  <g id="alok" transform="translate(300,300)">
-    <!-- legs / seat -->
-    <ellipse cx="0" cy="135" rx="70" ry="18" fill="#021017"></ellipse>
-    <!-- body -->
-    <g id="body">
-      <ellipse cx="0" cy="50" rx="58" ry="72" fill="#0b2630" stroke="#00d7ff" stroke-width="2"></ellipse>
-      <!-- chest area where heart sits -->
-      <g id="heart-group" transform="translate(0,30)">
-        <!-- heart background -->
-        <path id="heart" d="M0,18 C-18,-2 -48,2 -48,28 C-48,58 -10,72 0,90 C10,72 48,58 48,28 C48,2 18,-2 0,18 Z" fill="#3a0f0f" stroke="#ffb347" stroke-width="2"></path>
-        <!-- inner emblem (A with eye/trident) -->
-        <g transform="translate(0,38) scale(0.45)">
-          <!-- circular eye pupil -->
-          <circle cx="0" cy="-40" r="8" fill="#001" stroke="#ffd86b" stroke-width="2"></circle>
-          <!-- tiny trident shape under pupil -->
-          <path d="M -6 -28 L 0 -16 L 6 -28 M 0 -16 L 0 -6" stroke="#ffd86b" stroke-width="2" fill="none" stroke-linecap="round"></path>
-          <!-- A letter -->
-          <text x="0" y="40" text-anchor="middle" font-family="Orbitron, sans-serif" font-size="80" fill="#fff7cc" stroke="#ffb347" stroke-width="2">A</text>
-        </g>
-
-        <!-- pulsing aura around heart -->
-        <circle cx="0" cy="22" r="56" fill="none" stroke="#ffad33" stroke-opacity="0.06" stroke-width="14">
-          <animate attributeName="stroke-opacity" values="0.06;0.25;0.06" dur="2.4s" repeatCount="indefinite"></animate>
-          <animate attributeName="r" values="56;62;56" dur="2.4s" repeatCount="indefinite"></animate>
-        </circle>
-        <circle cx="0" cy="22" r="30" fill="none" stroke="#ffd86b" stroke-opacity="0.08" stroke-width="6">
-          <animate attributeName="stroke-opacity" values="0.08;0.5;0.08" dur="2.0s" repeatCount="indefinite"></animate>
-          <animate attributeName="r" values="30;36;30" dur="2.0s" repeatCount="indefinite"></animate>
-        </circle>
-      </g>
-
-      <!-- shoulders -->
-      <rect x="-76" y="-4" width="28" height="12" rx="6" fill="#062a33"></rect>
-      <rect x="48" y="-4" width="28" height="12" rx="6" fill="#062a33"></rect>
-
-      <!-- head -->
-      <g transform="translate(0,-90)">
-        <circle cx="0" cy="0" r="30" fill="#17343a" stroke="#00e6d2" stroke-width="2.0"></circle>
-        <circle cx="-10" cy="-4" r="3.4" fill="#001"></circle>
-        <circle cx="10" cy="-4" r="3.4" fill="#001"></circle>
-        <!-- faint smile -->
-        <path d="M -10 8 Q 0 16 10 8" stroke="#00ffd4" stroke-opacity="0.65" stroke-width="2" fill="none" stroke-linecap="round"></path>
-      </g>
-    </g>
-
-    <!-- laptop on lap -->
-    <g transform="translate(0,120)">
-      <rect x="-78" y="-36" width="156" height="96" rx="8" fill="#081a1f" stroke="#00d7ff" stroke-width="2"></rect>
-      <rect x="-72" y="-28" width="144" height="60" rx="4" fill="#06131a"></rect>
-      <rect x="-62" y="-18" width="124" height="36" rx="2" fill="#001217"></rect>
-      <text x="0" y="-4" fill="#00ffdd" font-family="Courier New, monospace" font-size="12" text-anchor="middle">alok@laptop:~$</text>
-      <!-- laptop screen glow -->
-      <ellipse cx="0" cy="-6" rx="56" ry="20" fill="#00ffd9" opacity="0.06"></ellipse>
-    </g>
-
-    <!-- mobile in right hand (stylized) -->
-    <g transform="translate(72,28) rotate(-12)">
-      <rect x="-18" y="-34" width="36" height="68" rx="6" fill="#02110f" stroke="#00ffd9" stroke-width="1.6"></rect>
-      <rect x="-14" y="-28" width="28" height="48" rx="4" fill="#002725"></rect>
-      <circle cx="0" cy="28" r="2.6" fill="#00ffd9"></circle>
-      <text x="0" y="2" font-size="8" text-anchor="middle" fill="#b7fff2" font-family="Courier">NET</text>
-      <!-- small ray to right-bottom node -->
-      <path class="glow-line" d="M 0 14 L 40 40" stroke-width="2">
-        <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="2.6s" repeatCount="indefinite"></animate>
-      </path>
-    </g>
-
-  </g>
-
-  <!-- little indicators that servers 'see' Alok: tiny pulsing circles near nodes directed inward -->
-  <g id="node-views">
-    <circle cx="300" cy="115" r="6" fill="#00ffd9" opacity="0.14">
-      <animate attributeName="r" values="6;16;6" dur="2.2s" repeatCount="indefinite"></animate>
-      <animate attributeName="opacity" values="0.14;0.6;0.14" dur="2.2s" repeatCount="indefinite"></animate>
-    </circle>
-    <circle cx="130" cy="190" r="5" fill="#00ffd9" opacity="0.12">
-      <animate attributeName="r" values="5;14;5" dur="2.8s" repeatCount="indefinite"></animate>
-      <animate attributeName="opacity" values="0.12;0.5;0.12" dur="2.8s" repeatCount="indefinite"></animate>
-    </circle>
-    <circle cx="470" cy="190" r="5" fill="#00ffd9" opacity="0.12">
-      <animate attributeName="r" values="5;14;5" dur="2.6s" repeatCount="indefinite"></animate>
-      <animate attributeName="opacity" values="0.12;0.5;0.12" dur="2.6s" repeatCount="indefinite"></animate>
-    </circle>
-    <circle cx="120" cy="430" r="5" fill="#00ffd9" opacity="0.12">
-      <animate attributeName="r" values="5;14;5" dur="3s" repeatCount="indefinite"></animate>
-      <animate attributeName="opacity" values="0.12;0.5;0.12" dur="3s" repeatCount="indefinite"></animate>
-    </circle>
-    <circle cx="480" cy="430" r="5" fill="#00ffd9" opacity="0.12">
-      <animate attributeName="r" values="5;14;5" dur="2.9s" repeatCount="indefinite"></animate>
-      <animate attributeName="opacity" values="0.12;0.5;0.12" dur="2.9s" repeatCount="indefinite"></animate>
+  <!-- PULSE AURA -->
+  <g transform="translate(300 300)">
+    <circle r="140" fill="url(#coreGlow)" opacity="0.7">
+      <animate attributeName="r" values="130;145;130" dur="3s" repeatCount="indefinite"></animate>
+      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite"></animate>
     </circle>
   </g>
 
-  <!-- label / title -->
-  <text x="300" y="32" text-anchor="middle" fill="#ffd86b" font-family="Orbitron, sans-serif" font-size="20" font-weight="700">ARAKHEIGHT — ALOK RANJAN</text>
+  <!-- CENTER CORE -->
+  <g transform="translate(300 300)">
+    <circle r="60" fill="#071a22" stroke="#00ffd9" stroke-width="3" filter="url(#neonGlow)"></circle>
+  </g>
 
-  <!-- subtle footer -->
-  <text x="300" y="582" text-anchor="middle" fill="#00e6d2" font-size="10" font-family="Courier New, monospace">Leader Node • Heart-Sigil: Arakheight • Network: Divine Mesh</text>
+  <!-- INNER HEART CORE -->
+  <g transform="translate(300 300)">
+    <circle r="28" fill="#ff9a00" opacity="0.9">
+      <animate attributeName="r" values="22;28;22" dur="1.8s" repeatCount="indefinite"></animate>
+    </circle>
+  </g>
+
+  <!-- ✅ CENTER TEXT: ALOK -->
+  <text x="300" y="308" text-anchor="middle" class="title">ALOK</text>
+
+  <!-- HEADER -->
+  <text x="300" y="36" text-anchor="middle" fill="#00ffd9" font-family="Orbitron, monospace" font-size="16" letter-spacing="3">
+    ARAKHEIGHT — CORE NODE
+  </text>
+
+  <!-- FOOTER -->
+  <text x="300" y="585" text-anchor="middle" fill="#00ffd9" font-family="Courier New" font-size="10">
+    Divine Pulse • Leader Core • Neural Aura
+  </text>
+
+</svg>
+
 </svg>
 
 <!-- ===== YOUR EXACT SVG END ===== -->
@@ -327,7 +216,33 @@ setTimeout(() => {
     video.play();
 }, 9000);
 </script>
+<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:black;">
+  <img src="arak_pulse_alok.svg" width="420" alt="ALOK Core">
+</div>
+
+</body>
+<body>
+
+<!-- ===== ALOK PULSE SVG LOGO ===== -->
+<div id="logo-wrapper" class="neon-glow rotate">
+    <img src="arak_alok_pulse.svg" width="420" alt="ALOK Pulse Logo">
+</div>
+
+<!-- ===== MANIM PRELUDE VIDEO ===== -->
+<video id="manim-video" controls>
+    <source src="prepartpledue.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+</html>
+<script>
+setTimeout(() => {
+    document.getElementById("logo-wrapper").style.display = "none";
+    const video = document.getElementById("manim-video");
+    video.style.display = "block";
+    video.play();
+}, 9000);
+</script>
 
 </body>
 </html>
-
