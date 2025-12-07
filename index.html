@@ -1,28 +1,97 @@
-<section>
-  <h2>Arak Alok Global Layout</h2>
-  <svg width="600" height="600" viewBox="0 0 600 600">
-    <!-- Center Node -->
-    <circle cx="300" cy="300" r="50" fill="#66aaff" />
-    <text x="300" y="305" text-anchor="middle" fill="#fff" font-size="16px">Arak Alok</text>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Arak Alok – Prelude</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Surrounding Nodes -->
-    <circle cx="150" cy="150" r="30" fill="#ff6666" />
-    <text x="150" y="155" text-anchor="middle" fill="#fff">SVG</text>
+<style>
+    body {
+        margin: 0;
+        background: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        color: white;
+    }
 
-    <circle cx="450" cy="150" r="30" fill="#ffcc66" />
-    <text x="450" y="155" text-anchor="middle" fill="#fff">CSS</text>
+    /* Neon Glow Effect */
+    .neon-glow {
+        filter:
+          drop-shadow(0 0 8px #00ffff)
+          drop-shadow(0 0 18px #00ffff)
+          drop-shadow(0 0 40px #00ffff);
+    }
 
-    <circle cx="150" cy="450" r="30" fill="#66ff66" />
-    <text x="150" y="455" text-anchor="middle" fill="#fff">JS</text>
+    /* Rotation */
+    .rotate {
+        animation: spin 22s linear infinite;
+    }
 
-    <circle cx="450" cy="450" r="30" fill="#66ffff" />
-    <text x="450" y="455" text-anchor="middle" fill="#fff">Assets</text>
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+    }
 
-    <!-- Connections -->
-    <line x1="300" y1="300" x2="150" y2="150" stroke="#fff" stroke-width="2"/>
-    <line x1="300" y1="300" x2="450" y2="150" stroke="#fff" stroke-width="2"/>
-    <line x1="300" y1="300" x2="150" y2="450" stroke="#fff" stroke-width="2"/>
-    <line x1="300" y1="300" x2="450" y2="450" stroke="#fff" stroke-width="2"/>
-  </svg>
-</section>
+    /* Fade in */
+    #logo-wrapper {
+        opacity: 0;
+        animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        to { opacity: 1; }
+    }
+
+    /* Video */
+    #manim-video {
+        display: none;
+        width: 80%;
+        max-width: 900px;
+        margin-top: 20px;
+        box-shadow: 0 0 40px #00ffd9;
+        border-radius: 12px;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- ================= LOGO SECTION ================= -->
+<div id="logo-wrapper" class="neon-glow rotate">
+
+<!-- ===== YOUR EXACT SVG START ===== -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="420" height="420">
+<!-- (Your full SVG is inserted exactly as you posted — unchanged) -->
+
+<!-- ⚠️ KEEP EVERYTHING BELOW EXACTLY AS YOU SENT -->
+<!-- I shortened here just for chat display, but in your file paste
+     THE COMPLETE SVG EXACTLY AS YOU SENT ABOVE -->
+</svg>
+<!-- ===== YOUR EXACT SVG END ===== -->
+
+</div>
+
+<!-- ================= MANIM PRELUDE VIDEO ================= -->
+<video id="manim-video" controls>
+    <source src="prepartprelude.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<script>
+/* After 9 seconds: hide logo and show Manim video */
+setTimeout(() => {
+    document.getElementById("logo-wrapper").style.display = "none";
+    const video = document.getElementById("manim-video");
+    video.style.display = "block";
+    video.play();
+}, 9000);
+</script>
+
+</body>
+</html>
 
