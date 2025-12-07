@@ -43,3 +43,12 @@ a {
     text-decoration: none;
     font-weight: bold;
 }
+section svg circle:hover {
+    fill: #ff00ff;
+    cursor: pointer;
+}
+
+section svg text {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}

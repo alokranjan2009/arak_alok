@@ -1,45 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>arak_alok</title>
+<section>
+  <h2>Arak Alok Global Layout</h2>
+  <svg width="600" height="600" viewBox="0 0 600 600">
+    <!-- Center Node -->
+    <circle cx="300" cy="300" r="50" fill="#66aaff" />
+    <text x="300" y="305" text-anchor="middle" fill="#fff" font-size="16px">Arak Alok</text>
 
-  <!-- Main Styles -->
-  <link rel="stylesheet" href="assets/styles.css" />
-</head>
+    <!-- Surrounding Nodes -->
+    <circle cx="150" cy="150" r="30" fill="#ff6666" />
+    <text x="150" y="155" text-anchor="middle" fill="#fff">SVG</text>
 
-<body>
+    <circle cx="450" cy="150" r="30" fill="#ffcc66" />
+    <text x="450" y="155" text-anchor="middle" fill="#fff">CSS</text>
 
-  <header>
-    <h1>arak_alok</h1>
-    <p>This is a minimal static site scaffolded for build & deploy.</p>
-  </header>
+    <circle cx="150" cy="450" r="30" fill="#66ff66" />
+    <text x="150" y="455" text-anchor="middle" fill="#fff">JS</text>
 
-  <main>
-    <section>
-      <h2>Welcome</h2>
-      <p>Your GitHub Pages site is successfully connected and ready.</p>
-    </section>
+    <circle cx="450" cy="450" r="30" fill="#66ffff" />
+    <text x="450" y="455" text-anchor="middle" fill="#fff">Assets</text>
 
-    <section>
-      <h2>Assets</h2>
-      <p>If you have images, scripts, or styles, place them in the <strong>assets/</strong> folder.</p>
-    </section>
-
-    <section>
-      <h2>Build Output (Optional)</h2>
-      <p>If you build using tools like Vite / Webpack, output files will be inside <strong>dist/</strong>.</p>
-    </section>
-  </main>
-
-  <footer>
-    <p>Powered by GitHub Pages · arak_alok</p>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="assets/app.js"></script>
-
-</body>
-</html>
+    <!-- Connections -->
+    <line x1="300" y1="300" x2="150" y2="150" stroke="#fff" stroke-width="2"/>
+    <line x1="300" y1="300" x2="450" y2="150" stroke="#fff" stroke-width="2"/>
+    <line x1="300" y1="300" x2="150" y2="450" stroke="#fff" stroke-width="2"/>
+    <line x1="300" y1="300" x2="450" y2="450" stroke="#fff" stroke-width="2"/>
+  </svg>
+</section>
 
